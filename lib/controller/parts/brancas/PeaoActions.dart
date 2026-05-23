@@ -29,7 +29,7 @@ class PeaoActions {
 
   void peao() {
     String resultado;
-
+    //2 casas
     if (row == 6 && Mapa.tabuleiro[row - 1][col] == 0) {
       if (row == 6 && Mapa.tabuleiro[row - 2][col] == 0) {
         List<int> cordenadasRei = Kingcordenadas().cordenadasKing();
@@ -47,11 +47,12 @@ class PeaoActions {
         Mapa.tabuleiro[row - 2][col] = partSalva;
       }
     }
+    //1 casa
     if (Mapa.tabuleiro[row - 1][col] == 0) {
       List<int> cordenadasRei = Kingcordenadas().cordenadasKing();
-      int partSalva = Mapa.tabuleiro[row - 2][col];
+      int partSalva = Mapa.tabuleiro[row - 1][col];
       Mapa.tabuleiro[row][col] = 0;
-      Mapa.tabuleiro[row - 2][col] = part;
+      Mapa.tabuleiro[row - 1][col] = part;
       if (IllegalMoveKing().illegalMoveKingTest(
         cordenadasRei[0],
         cordenadasRei[1],
@@ -60,9 +61,9 @@ class PeaoActions {
         MapaColor.colors[row - 1][col] = 20;
       }
       Mapa.tabuleiro[row][col] = part;
-      Mapa.tabuleiro[row - 2][col] = partSalva;
+      Mapa.tabuleiro[row - 1][col] = partSalva;
     }
-
+    empasante();
     for (int l = -1; l < 2; l++) {
       if (col + l > -1 && col + l < 8) {
         if (Mapa.tabuleiro[row - 1][col + l] != 0 &&
@@ -94,9 +95,7 @@ class PeaoActions {
           if (Controller.jogada[2] == 3 &&
               Controller.jogada[3] == col + l &&
               Controller.jogada[0] == 1) {
-            MapaColor.colors[row][col + l] = 21;
-            Controller.jogada = [row, col, row, col + l, part];
-            Controller.partidaAtual.add(Controller.jogada);
+            MapaColor.colors[row - 1][col + l] = 19;
           }
         }
       }

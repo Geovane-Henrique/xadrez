@@ -14,8 +14,7 @@ class Tabuleiro extends StatefulWidget {
   static bool towerLeftWhiteRock = false;
   static bool towerRightBlackRock = false;
   static bool towerLeftBlackRock = false;
-  static bool kingWhiteCheck = false;
-  static bool kingBlackCheck = false;
+  static bool kingChek = false;
 
   const Tabuleiro({super.key});
 
@@ -41,6 +40,8 @@ class _TabuleiroState extends State<Tabuleiro> {
                   ? color = Colors.red.withOpacity(0.3)
                   : MapaColor.colors[row][col] == 22
                   ? color = Colors.red
+                  : MapaColor.colors[row][col] == 19
+                  ? color = Colors.red.withOpacity(0.4)
                   : null;
               if (MapaColor.colors[row][col] == 20) {
                 MapaColor.colors[row][col] = 0;
@@ -50,6 +51,11 @@ class _TabuleiroState extends State<Tabuleiro> {
               }
               if (MapaColor.colors[row][col] == 22) {
                 MapaColor.colors[row][col] = 0;
+              }
+              if (MapaColor.colors[row][col] == 19) {
+                if (!Tabuleiro.kingChek) {
+                  MapaColor.colors[row][col] = 0;
+                }
               }
               return Casa(
                 color: color,

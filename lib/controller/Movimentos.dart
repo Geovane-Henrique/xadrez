@@ -29,7 +29,19 @@ class Movimentos {
   }
 
   void action() {
-    if (color == Colors.greenAccent.withOpacity(0.3) ||
+    if (color == Colors.red.withOpacity(0.4)) {
+      if (Tabuleiro.vez == Turn.brancas) {
+        Controller.empasantWhite = true;
+      } else {
+        Controller.empasantBlack = true;
+      }
+      Controller(
+        part: Mapa.tabuleiro[row][col],
+        col: col,
+        row: row,
+        partSaved: Tabuleiro.partSaved,
+      ).move();
+    } else if (color == Colors.greenAccent.withOpacity(0.3) ||
         color == Colors.red.withOpacity(0.3) && Tabuleiro.partSaved[2] != 0) {
       Controller(
         part: Mapa.tabuleiro[row][col],

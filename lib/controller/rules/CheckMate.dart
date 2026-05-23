@@ -30,7 +30,7 @@ class Checkmate {
     for (int i = 0; i < 8; i++) {
       for (int l = 0; l < 8; l++) {
         if (Tabuleiro.vez == Turn.brancas) {
-          if (Mapa.tabuleiro[i][l] < 10) {
+          if (Mapa.tabuleiro[i][l] > 10) {
             Controller(
               part: Mapa.tabuleiro[i][l],
               col: l,
@@ -39,7 +39,7 @@ class Checkmate {
             ).findCordenadas();
           }
         } else {
-          if (Mapa.tabuleiro[i][l] > 10) {
+          if (Mapa.tabuleiro[i][l] < 10) {
             Controller(
               part: Mapa.tabuleiro[i][l],
               col: l,
@@ -52,9 +52,9 @@ class Checkmate {
     }
     if (findColor()) {
       clearColor();
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   }
 }

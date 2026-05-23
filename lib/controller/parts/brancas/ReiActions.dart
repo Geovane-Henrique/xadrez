@@ -34,7 +34,6 @@ class ReiActions {
           String resultado = identificarPart(Mapa.tabuleiro[row + i][col + l]);
 
           if (resultado == "vazio") {
-            print("part");
             if (IllegalMoveKing().illegalMoveKingTest(row + i, col + l, part)) {
               MapaColor.colors[row + i][col + l] = 20;
             }

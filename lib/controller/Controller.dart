@@ -23,6 +23,8 @@ class Controller {
 
   static List<List<int>> partidaAtual = [];
   static List<int> jogada = [];
+  static bool empasantWhite = false;
+  static bool empasantBlack = false;
 
   Controller({
     required this.part,
@@ -66,21 +68,17 @@ class Controller {
   }
 
   void move() {
-    print(Tabuleiro.kingWhiteCheck);
-    if (Tabuleiro.kingWhiteCheck) {
-      simuladorChek(row, col, partSaved[0], partSaved[1], partSaved[2]);
-    }
-    if (Tabuleiro.kingBlackCheck) {
-      simuladorChek(row, col, partSaved[0], partSaved[1], partSaved[2]);
-    }
-    if (Tabuleiro.kingWhiteCheck == true) {
-      return;
-    }
-    if (Tabuleiro.kingBlackCheck == true) {
-      return;
-    }
     Mapa.tabuleiro[partSaved[0]][partSaved[1]] = 0;
+    if (empasantBlack) {
+      Mapa.tabuleiro[row - 1][col] = 0;
+      empasantBlack = false;
+    }
+    if (empasantWhite) {
+      Mapa.tabuleiro[row + 1][col] = 0;
+      empasantWhite = false;
+    }
     Mapa.tabuleiro[row][col] = partSaved[2];
+
     if (partSaved[2] == 11 && row == 0) {
       Mapa.tabuleiro[row][col] = 15;
     }
@@ -92,19 +90,24 @@ class Controller {
     partidaAtual.add(jogada);
 
     rockMove();
-    Check().check();
-    if (Checkmate().chekMate()) {
-      print("check mate");
-    }
+
     Tabuleiro.vez = (Tabuleiro.vez == Turn.brancas)
         ? Turn.pretas
         : Turn.brancas;
+    if (Checkmate().chekMate()) {
+      print("rei afogado");
+    }
+    if (Check().check()) {
+      if (Checkmate().chekMate()) {
+        print("check mate");
+      }
+    }
     resetVariableRock();
   }
 
   void rockMove() {
     if (Tabuleiro.towerRightWhiteRock) {
-      if (col == 6) {
+      if (col == 6 && partSaved[2] == 16) {
         Tabuleiro.towerRightWhiteRock = false;
         Mapa.tabuleiro[7][7] = 0;
         Mapa.tabuleiro[7][5] = 14;
@@ -113,7 +116,7 @@ class Controller {
       }
     }
     if (Tabuleiro.towerLeftWhiteRock) {
-      if (col == 2) {
+      if (col == 2 && partSaved[2] == 16) {
         Tabuleiro.towerLeftWhiteRock = false;
         Mapa.tabuleiro[7][0] = 0;
         Mapa.tabuleiro[7][3] = 14;
@@ -122,7 +125,7 @@ class Controller {
       }
     }
     if (Tabuleiro.towerRightBlackRock) {
-      if (col == 6) {
+      if (col == 6 && partSaved[2] == 6) {
         Tabuleiro.towerRightBlackRock = false;
         Mapa.tabuleiro[0][7] = 0;
         Mapa.tabuleiro[0][5] = 4;
@@ -131,7 +134,7 @@ class Controller {
       }
     }
     if (Tabuleiro.towerLeftBlackRock) {
-      if (col == 2) {
+      if (col == 2 && partSaved[2] == 6) {
         Tabuleiro.towerLeftBlackRock = false;
         Mapa.tabuleiro[0][0] = 0;
         Mapa.tabuleiro[0][3] = 4;
@@ -146,14 +149,5 @@ class Controller {
     Tabuleiro.towerRightBlackRock = false;
     Tabuleiro.towerLeftWhiteRock = false;
     Tabuleiro.towerRightWhiteRock = false;
-  }
-
-  void simuladorChek(int row, int col, int rowO, int colO, part) {
-    int partSalva = Mapa.tabuleiro[row][col];
-    Mapa.tabuleiro[rowO][colO] = 0;
-    Mapa.tabuleiro[row][col] = part;
-    Check().check();
-    Mapa.tabuleiro[rowO][colO] = part;
-    Mapa.tabuleiro[row][col] = partSalva;
   }
 }
