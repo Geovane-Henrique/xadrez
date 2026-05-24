@@ -1,10 +1,10 @@
-import 'package:xadrez/appPages/Tabuleiro.dart';
+import 'package:xadrez/view/appPages/Tabuleiro.dart';
 import 'package:xadrez/controller/Controller.dart';
 import 'package:xadrez/model/enums/EnunTurn.dart';
 import 'package:xadrez/model/mapa/MapaColor.dart';
 import 'package:xadrez/model/mapa/MapaPart.dart';
 
-class Checkmate {
+class VerifyPlaysLegal {
   bool findColor() {
     for (int i = 0; i < 8; i++) {
       for (int l = 0; l < 8; l++) {

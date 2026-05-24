@@ -1,15 +1,14 @@
-import 'package:xadrez/model/mapa/MapaColor.dart';
+import '../../model/mapa/MapaColor.dart';
+import '../../model/mapa/MapaPart.dart';
+import '../rules/IlegalMoveKing.dart';
+import '../rules/KingCordenadas.dart';
 
-import '../../../model/mapa/MapaPart.dart';
-import '../../IlegalMoveKing.dart';
-import '../../rules/KingCordenadas.dart';
-
-class TorreActions {
+class CavaloActions {
   final int part;
   final int col;
   final int row;
 
-  TorreActions({required this.part, required this.col, required this.row});
+  CavaloActions({required this.part, required this.col, required this.row});
 
   String identificarPart(int newPart) {
     if (newPart == 0) {
@@ -26,25 +25,23 @@ class TorreActions {
     return "aliado";
   }
 
-  void torre() {
+  void cavalo() {
     List<List<int>> cordenadas = [
-      [1, 0],
-      [-1, 0],
-      [0, 1],
-      [0, -1],
+      [2, 1],
+      [2, -1],
+      [-2, 1],
+      [-2, -1],
+      [1, 2],
+      [-1, 2],
+      [1, -2],
+      [-1, -2],
     ];
 
     for (var cor in cordenadas) {
-      int r = row;
-      int c = col;
+      int r = row + cor[0];
+      int c = col + cor[1];
 
-      while (true) {
-        r += cor[0];
-        c += cor[1];
-        if (c < 0 || c > 7 || r < 0 || r > 7) {
-          break;
-        }
-
+      if (r > -1 && r < 8 && c > -1 && c < 8) {
         String resultado = identificarPart(Mapa.tabuleiro[r][c]);
 
         if (resultado == "vazio") {
@@ -81,11 +78,6 @@ class TorreActions {
           }
           Mapa.tabuleiro[row][col] = part;
           Mapa.tabuleiro[r][c] = partSalva;
-
-          break;
-        }
-        if (resultado == "aliado") {
-          break;
         }
       }
     }

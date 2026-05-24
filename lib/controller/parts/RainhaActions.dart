@@ -1,5 +1,5 @@
-import 'package:xadrez/controller/parts/brancas/BispoActions.dart';
-import 'package:xadrez/controller/parts/brancas/TorreActions.dart';
+import 'package:xadrez/controller/parts/BispoActions.dart';
+import 'package:xadrez/controller/parts/TorreActions.dart';
 
 class RainhaActions {
   final int part;

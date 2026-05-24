@@ -1,14 +1,14 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:xadrez/appPages/Tabuleiro.dart';
-import 'package:xadrez/controller/parts/brancas/BispoActions.dart';
-import 'package:xadrez/controller/parts/brancas/CavaloActions.dart';
-import 'package:xadrez/controller/parts/brancas/PeaoActions.dart';
-import 'package:xadrez/controller/parts/brancas/RainhaActions.dart';
-import 'package:xadrez/controller/parts/brancas/ReiActions.dart';
-import 'package:xadrez/controller/parts/brancas/TorreActions.dart';
-import 'package:xadrez/controller/parts/brancas/PeaoActionsP.dart';
-import 'package:xadrez/controller/rules/CheckMate.dart';
+import 'package:xadrez/view/appPages/Tabuleiro.dart';
+import 'package:xadrez/controller/parts/BispoActions.dart';
+import 'package:xadrez/controller/parts/CavaloActions.dart';
+import 'package:xadrez/controller/parts/PeaoActions.dart';
+import 'package:xadrez/controller/parts/RainhaActions.dart';
+import 'package:xadrez/controller/parts/ReiActions.dart';
+import 'package:xadrez/controller/parts/TorreActions.dart';
+import 'package:xadrez/controller/parts/PeaoActionsP.dart';
+import 'package:xadrez/controller/rules/VerifyPlaysLegal.dart';
 import 'package:xadrez/controller/rules/check.dart';
 
 import '../model/enums/EnunTurn.dart';
@@ -69,39 +69,19 @@ class Controller {
 
   void move() {
     Mapa.tabuleiro[partSaved[0]][partSaved[1]] = 0;
-    if (empasantBlack) {
-      Mapa.tabuleiro[row - 1][col] = 0;
-      empasantBlack = false;
-    }
-    if (empasantWhite) {
-      Mapa.tabuleiro[row + 1][col] = 0;
-      empasantWhite = false;
-    }
     Mapa.tabuleiro[row][col] = partSaved[2];
 
-    if (partSaved[2] == 11 && row == 0) {
-      Mapa.tabuleiro[row][col] = 15;
-    }
-    if (partSaved[2] == 1 && row == 7) {
-      Mapa.tabuleiro[row][col] = 5;
-    }
+    verifyEmpasant();
+    peaoPromote();
 
-    jogada = [partSaved[0], partSaved[1], row, col, partSaved[2]];
-    partidaAtual.add(jogada);
+    savePlay();
 
     rockMove();
 
-    Tabuleiro.vez = (Tabuleiro.vez == Turn.brancas)
-        ? Turn.pretas
-        : Turn.brancas;
-    if (Checkmate().chekMate()) {
-      print("rei afogado");
-    }
-    if (Check().check()) {
-      if (Checkmate().chekMate()) {
-        print("check mate");
-      }
-    }
+    trocaDeTurno();
+
+    kingAfoged();
+    chek();
     resetVariableRock();
   }
 
@@ -149,5 +129,50 @@ class Controller {
     Tabuleiro.towerRightBlackRock = false;
     Tabuleiro.towerLeftWhiteRock = false;
     Tabuleiro.towerRightWhiteRock = false;
+  }
+
+  void chek() {
+    if (Check().check()) {
+      if (VerifyPlaysLegal().chekMate()) {
+        print("check mate");
+      }
+    }
+  }
+
+  void kingAfoged() {
+    if (VerifyPlaysLegal().chekMate()) {
+      print("rei afogado");
+    }
+  }
+
+  void trocaDeTurno() {
+    Tabuleiro.vez = (Tabuleiro.vez == Turn.brancas)
+        ? Turn.pretas
+        : Turn.brancas;
+  }
+
+  void peaoPromote() {
+    if (partSaved[2] == 11 && row == 0) {
+      Mapa.tabuleiro[row][col] = 15;
+    }
+    if (partSaved[2] == 1 && row == 7) {
+      Mapa.tabuleiro[row][col] = 5;
+    }
+  }
+
+  void savePlay() {
+    jogada = [partSaved[0], partSaved[1], row, col, partSaved[2]];
+    partidaAtual.add(jogada);
+  }
+
+  void verifyEmpasant() {
+    if (empasantBlack) {
+      Mapa.tabuleiro[row - 1][col] = 0;
+      empasantBlack = false;
+    }
+    if (empasantWhite) {
+      Mapa.tabuleiro[row + 1][col] = 0;
+      empasantWhite = false;
+    }
   }
 }

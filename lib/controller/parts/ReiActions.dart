@@ -1,9 +1,9 @@
-import 'package:xadrez/appPages/Tabuleiro.dart';
+import 'package:xadrez/view/appPages/Tabuleiro.dart';
 import 'package:xadrez/controller/Controller.dart';
-import 'package:xadrez/controller/IlegalMoveKing.dart';
+import 'package:xadrez/controller/rules/IlegalMoveKing.dart';
 
-import '../../../model/mapa/MapaColor.dart';
-import '../../../model/mapa/MapaPart.dart';
+import '../../model/mapa/MapaColor.dart';
+import '../../model/mapa/MapaPart.dart';
 
 class ReiActions {
   final int part;

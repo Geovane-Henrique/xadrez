@@ -1,6 +1,6 @@
-import 'package:xadrez/appPages/Tabuleiro.dart';
+import 'package:xadrez/view/appPages/Tabuleiro.dart';
 import 'package:xadrez/controller/Controller.dart';
-import 'package:xadrez/controller/IlegalMoveKing.dart';
+import 'package:xadrez/controller/rules/IlegalMoveKing.dart';
 import 'package:xadrez/controller/rules/KingCordenadas.dart';
 import 'package:xadrez/model/enums/EnunTurn.dart';
 import 'package:xadrez/model/mapa/MapaColor.dart';

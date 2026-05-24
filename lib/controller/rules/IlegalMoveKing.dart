@@ -1,4 +1,4 @@
-import '../model/mapa/MapaPart.dart';
+import '../../model/mapa/MapaPart.dart';
 
 class IllegalMoveKing {
   String identificarPart(row, col, part, whiteEnyme, blackEnyme) {

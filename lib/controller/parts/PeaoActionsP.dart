@@ -1,9 +1,9 @@
 import 'package:xadrez/controller/Controller.dart';
-import 'package:xadrez/controller/IlegalMoveKing.dart';
+import 'package:xadrez/controller/rules/IlegalMoveKing.dart';
 
-import '../../../model/mapa/MapaColor.dart';
-import '../../../model/mapa/MapaPart.dart';
-import '../../rules/KingCordenadas.dart';
+import '../../model/mapa/MapaColor.dart';
+import '../../model/mapa/MapaPart.dart';
+import '../rules/KingCordenadas.dart';
 
 class PeaoActionsP {
   final int part;

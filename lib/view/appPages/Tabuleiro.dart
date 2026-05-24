@@ -4,8 +4,8 @@ import 'package:xadrez/model/mapa/MapaPart.dart';
 import 'package:xadrez/controller/Controller.dart';
 import 'package:xadrez/controller/Movimentos.dart';
 
-import '../casas/Casa.dart';
-import '../model/mapa/MapaColor.dart';
+import 'casas/Casa.dart';
+import '../../model/mapa/MapaColor.dart';
 
 class Tabuleiro extends StatefulWidget {
   static List<int> partSaved = [0, 0, 0];
