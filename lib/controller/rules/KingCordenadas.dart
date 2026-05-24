@@ -1,4 +1,4 @@
-import '../../view/appPages/Tabuleiro.dart';
+import '../../view/appPages/game_page.dart';
 import '../../model/enums/EnunTurn.dart';
 import '../../model/mapa/MapaPart.dart';
 

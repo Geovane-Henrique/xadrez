@@ -1,4 +1,4 @@
-import 'package:xadrez/view/appPages/Tabuleiro.dart';
+import 'package:xadrez/view/appPages/game_page.dart';
 import 'package:xadrez/controller/rules/IlegalMoveKing.dart';
 import 'package:xadrez/model/mapa/MapaColor.dart';
 import 'package:xadrez/model/mapa/MapaPart.dart';

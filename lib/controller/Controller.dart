@@ -1,6 +1,6 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:xadrez/view/appPages/Tabuleiro.dart';
+import 'package:xadrez/view/appPages/game_page.dart';
 import 'package:xadrez/controller/parts/BispoActions.dart';
 import 'package:xadrez/controller/parts/CavaloActions.dart';
 import 'package:xadrez/controller/parts/PeaoActions.dart';
@@ -140,8 +140,10 @@ class Controller {
   }
 
   void kingAfoged() {
-    if (VerifyPlaysLegal().chekMate()) {
-      print("rei afogado");
+    if (!Check().check()) {
+      if (VerifyPlaysLegal().chekMate()) {
+        print("rei afogado");
+      }
     }
   }
 

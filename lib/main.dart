@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'view/appPages/Tabuleiro.dart';
+import 'view/appPages/game_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
