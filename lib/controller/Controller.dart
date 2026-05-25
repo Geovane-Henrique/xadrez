@@ -1,5 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:xadrez/view/appPages/dialog/rei_afogado_dialog.dart';
+import 'package:xadrez/view/appPages/dialog/xeque_mate_dialog.dart';
 import 'package:xadrez/view/appPages/game_page.dart';
 import 'package:xadrez/controller/parts/BispoActions.dart';
 import 'package:xadrez/controller/parts/CavaloActions.dart';
@@ -21,6 +23,8 @@ class Controller {
   final int row;
   final List<int> partSaved;
 
+  final BuildContext? context;
+
   static ValueNotifier<List<List<int>>> partidaAtual = ValueNotifier([]);
   static List<int> jogada = [];
   static bool empasantWhite = false;
@@ -31,6 +35,7 @@ class Controller {
     required this.col,
     required this.row,
     required this.partSaved,
+    this.context,
   });
 
   void findCordenadas() {
@@ -136,6 +141,7 @@ class Controller {
     if (Check().check()) {
       if (VerifyPlaysLegal().chekMate()) {
         print("check mate");
+        XequeMateDialog().xequeMateDialog(context!);
       }
     }
   }
@@ -144,6 +150,7 @@ class Controller {
     if (!Check().check()) {
       if (VerifyPlaysLegal().chekMate()) {
         print("rei afogado");
+        ReiAfogadoDialogDialog().reiAfogadoDialogDialog(context!);
       }
     }
   }

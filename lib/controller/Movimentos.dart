@@ -11,11 +11,14 @@ class Movimentos {
   final int row;
   final Color color;
 
+  final BuildContext context;
+
   Movimentos({
     required this.part,
     required this.col,
     required this.row,
     required this.color,
+    required this.context,
   });
 
   bool turnos() {
@@ -40,6 +43,7 @@ class Movimentos {
         col: col,
         row: row,
         partSaved: Tabuleiro.partSaved,
+        context: context,
       ).move();
     } else if (color == Colors.greenAccent.withOpacity(0.3) ||
         color == Colors.red.withOpacity(0.3) && Tabuleiro.partSaved[2] != 0) {
@@ -48,6 +52,7 @@ class Movimentos {
         col: col,
         row: row,
         partSaved: Tabuleiro.partSaved,
+        context: context,
       ).move();
     } else {
       if (!turnos()) {
@@ -58,6 +63,7 @@ class Movimentos {
         col: col,
         row: row,
         partSaved: Tabuleiro.partSaved,
+        context: context,
       ).findCordenadas();
     }
     if (Mapa.tabuleiro[row][col] != 0) {

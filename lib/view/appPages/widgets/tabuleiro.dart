@@ -68,6 +68,7 @@ class _tabuleiroState extends State<tabuleiro> {
                     col: col,
                     row: row,
                     color: color,
+                    context: context,
                   ).action();
                 });
               },
