@@ -51,7 +51,7 @@ class ReiActions {
   }
 
   bool reiMoveChek() {
-    for (var chek in Controller.partidaAtual) {
+    for (var chek in Controller.partidaAtual.value) {
       if (chek[4] == part) {
         return true;
       }
@@ -60,7 +60,7 @@ class ReiActions {
   }
 
   bool towerMoveCheck(int row, int col, int part) {
-    for (var chek in Controller.partidaAtual) {
+    for (var chek in Controller.partidaAtual.value) {
       if (chek[4] == part && chek[0] == row && chek[1] == col) {
         return true;
       }

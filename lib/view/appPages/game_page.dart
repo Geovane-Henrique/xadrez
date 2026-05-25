@@ -4,6 +4,7 @@ import 'package:xadrez/model/enums/EnunTurn.dart';
 import 'package:xadrez/model/mapa/MapaPart.dart';
 import 'package:xadrez/controller/Controller.dart';
 import 'package:xadrez/controller/Movimentos.dart';
+import 'package:xadrez/view/appPages/widgets/registros.dart';
 import 'package:xadrez/view/appPages/widgets/tabuleiro.dart';
 
 import '../../model/mapa/MapaColor.dart';
@@ -70,68 +71,13 @@ class _TabuleiroState extends State<Tabuleiro> {
               flex: 31,
               child: Center(
                 child: Container(
-                  color: Colors.black,
+                  color: Colors.black38,
                   alignment: Alignment.topCenter,
                   child: AspectRatio(aspectRatio: 1, child: tabuleiro()),
                 ),
               ),
             ),
-            Expanded(
-              flex: 23,
-              child: Center(
-                child: Container(
-                  alignment: Alignment.topCenter,
-                  color: Colors.black26,
-                  child: Column(
-                    children: [
-                      Text("jogadas feitas", style: TextStyle(fontSize: 25)),
-                      Expanded(
-                        child: IntrinsicHeight(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  alignment: Alignment.topCenter,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        "Brancas",
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const VerticalDivider(
-                                color: Colors.black,
-                                endIndent: 10,
-                                indent: 10,
-                                thickness: 3,
-                              ),
-                              Expanded(
-                                child: Container(
-                                  alignment: Alignment.topCenter,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        "Pretas",
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            Expanded(flex: 23, child: Registros()),
             Expanded(
               flex: 4,
               child: Container(
