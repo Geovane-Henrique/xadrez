@@ -24,37 +24,38 @@ class Casa extends StatelessWidget {
         backgroundColor: color,
         shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.zero),
       ),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.125,
-        height: MediaQuery.of(context).size.height * 0.06,
-        color: color,
-        child: part != 0
-            ? Image.asset(
-                part == 1
-                    ? Img.peao
-                    : part == 2
-                    ? Img.bispo
-                    : part == 3
-                    ? Img.cavalo
-                    : part == 4
-                    ? Img.torre
-                    : part == 5
-                    ? Img.rainha
-                    : part == 6
-                    ? Img.rei
-                    : part == 11
-                    ? Img.peaoB
-                    : part == 12
-                    ? Img.bispoB
-                    : part == 13
-                    ? Img.cavaloB
-                    : part == 14
-                    ? Img.torreB
-                    : part == 15
-                    ? Img.rainhaB
-                    : Img.reiB,
-              )
-            : null,
+      child: Padding(
+        padding: const EdgeInsets.all(1.0),
+        child: Container(
+          color: color,
+          child: part != 0
+              ? Image.asset(
+                  part == 1
+                      ? Img.peao
+                      : part == 2
+                      ? Img.bispo
+                      : part == 3
+                      ? Img.cavalo
+                      : part == 4
+                      ? Img.torre
+                      : part == 5
+                      ? Img.rainha
+                      : part == 6
+                      ? Img.rei
+                      : part == 11
+                      ? Img.peaoB
+                      : part == 12
+                      ? Img.bispoB
+                      : part == 13
+                      ? Img.cavaloB
+                      : part == 14
+                      ? Img.torreB
+                      : part == 15
+                      ? Img.rainhaB
+                      : Img.reiB,
+                )
+              : null,
+        ),
       ),
     );
   }

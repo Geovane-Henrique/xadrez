@@ -16,12 +16,22 @@ class tabuleiro extends StatefulWidget {
 class _tabuleiroState extends State<tabuleiro> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: List.generate(8, (row) {
-        return Row(
-          children: List.generate(8, (col) {
+    return Center(
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 64,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 8,
+          ),
+          itemBuilder: (context, index) {
+            int row = index ~/ 8;
+            int col = index % 8;
+
             bool isWhite = (row + col) % 2 == 0;
             Color color = isWhite ? Colors.white : Colors.brown;
+
             MapaColor.colors[row][col] == 20
                 ? color = Colors.greenAccent.withOpacity(0.3)
                 : color;
@@ -32,16 +42,18 @@ class _tabuleiroState extends State<tabuleiro> {
                 : MapaColor.colors[row][col] == 19
                 ? color = Colors.red.withOpacity(0.4)
                 : null;
+
             if (MapaColor.colors[row][col] == 20) {
+              color = Colors.greenAccent.withOpacity(0.3);
               MapaColor.colors[row][col] = 0;
-            }
-            if (MapaColor.colors[row][col] == 21) {
+            } else if (MapaColor.colors[row][col] == 21) {
+              color = Colors.red.withOpacity(0.3);
               MapaColor.colors[row][col] = 0;
-            }
-            if (MapaColor.colors[row][col] == 22) {
+            } else if (MapaColor.colors[row][col] == 22) {
+              color = Colors.red;
               MapaColor.colors[row][col] = 0;
-            }
-            if (MapaColor.colors[row][col] == 19) {
+            } else if (MapaColor.colors[row][col] == 19) {
+              color = Colors.red.withOpacity(0.4);
               if (!Tabuleiro.kingChek) {
                 MapaColor.colors[row][col] = 0;
               }
@@ -60,9 +72,9 @@ class _tabuleiroState extends State<tabuleiro> {
                 });
               },
             );
-          }),
-        );
-      }),
+          },
+        ),
+      ),
     );
   }
 }
