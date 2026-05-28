@@ -55,7 +55,7 @@ class _TabuleiroState extends State<Tabuleiro> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Henrique",
+                      "Galadriel",
                       textAlign: TextAlign.left,
                       style: TextStyle(fontSize: 26, color: Colors.white),
                     ),
@@ -97,7 +97,7 @@ class _TabuleiroState extends State<Tabuleiro> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Geovane",
+                          "Thorfin",
                           textAlign: TextAlign.left,
                           style: TextStyle(fontSize: 26, color: Colors.white),
                         ),
