@@ -55,7 +55,7 @@ class _TabuleiroState extends State<Tabuleiro> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Galadriel",
+                      "Eldrior",
                       textAlign: TextAlign.left,
                       style: TextStyle(fontSize: 26, color: Colors.white),
                     ),
@@ -97,7 +97,7 @@ class _TabuleiroState extends State<Tabuleiro> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Thorfin",
+                          "Frodo",
                           textAlign: TextAlign.left,
                           style: TextStyle(fontSize: 26, color: Colors.white),
                         ),
@@ -114,7 +114,7 @@ class _TabuleiroState extends State<Tabuleiro> {
             // Expanded(flex: 1, child: Container(color: Colors.black)),
           ],
         ),
-      ),
+
     );
   }
 }
