@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xadrez/controller/Controller.dart';
@@ -33,7 +35,10 @@ class _RegistrosState extends State<Registros> {
                             ValueListenableBuilder(
                               valueListenable: Controller.jogadasView,
                               builder: (context, value, child) {
-                                return Text(value.toString());
+                                if (value.isNotEmpty) {
+                                  return Text(value.toString());
+                                }
+                                return Text("");
                               },
                             ),
                           ],
