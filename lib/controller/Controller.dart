@@ -26,9 +26,11 @@ class Controller {
   final BuildContext? context;
 
   static ValueNotifier<List<List<int>>> partidaAtual = ValueNotifier([]);
+  static ValueNotifier<List<List<int>>> jogadasView = ValueNotifier([]);
   static List<int> jogada = [];
   static bool empasantWhite = false;
   static bool empasantBlack = false;
+  late List<String> jogadaView;
 
   Controller({
     required this.part,
@@ -97,8 +99,10 @@ class Controller {
         Mapa.tabuleiro[7][7] = 0;
         Mapa.tabuleiro[7][5] = 14;
         jogada = [7, 7, 7, 5, 14];
-        partidaAtual.value.add(jogada);
-        partidaAtual.notifyListeners();
+        Controller.jogadasView.value = [
+          ...Controller.jogadasView.value,
+          jogada,
+        ];
       }
     }
     if (Tabuleiro.towerLeftWhiteRock) {
@@ -107,7 +111,10 @@ class Controller {
         Mapa.tabuleiro[7][0] = 0;
         Mapa.tabuleiro[7][3] = 14;
         jogada = [7, 0, 7, 3, 14];
-        partidaAtual.value.add(jogada);
+        Controller.jogadasView.value = [
+          ...Controller.jogadasView.value,
+          jogada,
+        ];
       }
     }
     if (Tabuleiro.towerRightBlackRock) {
@@ -116,7 +123,10 @@ class Controller {
         Mapa.tabuleiro[0][7] = 0;
         Mapa.tabuleiro[0][5] = 4;
         jogada = [0, 7, 0, 5, 4];
-        partidaAtual.value.add(jogada);
+        Controller.jogadasView.value = [
+          ...Controller.jogadasView.value,
+          jogada,
+        ];
       }
     }
     if (Tabuleiro.towerLeftBlackRock) {
@@ -125,7 +135,10 @@ class Controller {
         Mapa.tabuleiro[0][0] = 0;
         Mapa.tabuleiro[0][3] = 4;
         jogada = [0, 0, 0, 3, 4];
-        partidaAtual.value.add(jogada);
+        Controller.jogadasView.value = [
+          ...Controller.jogadasView.value,
+          jogada,
+        ];
       }
     }
   }
@@ -172,8 +185,7 @@ class Controller {
 
   void savePlay() {
     jogada = [partSaved[0], partSaved[1], row, col, partSaved[2]];
-    Controller.partidaAtual.value = [...Controller.partidaAtual.value, jogada];
-    print(partidaAtual);
+    Controller.jogadasView.value = [...Controller.jogadasView.value, jogada];
   }
 
   void verifyEmpasant() {
